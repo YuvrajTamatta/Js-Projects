@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Accound</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+   <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+<body>
+    <nav class="d-flex justify-content-between shadow">
+      <div class="logo">
+        <img src="images/logo.png" alt="Not found" height="90px" />
+      </div>
+      <div class="d-flex justify-content-between fs-6 align-items-center">
+
+        <p class="mx-4">
+          <i class="me-2 fa-solid fa-cart-shopping"></i>products
+        </p>
+        <p class="mx-4"><i class="me-2 fa-solid fa-server"></i>Service</p>
+
+      </div>
+    </nav>
+
+    <!-- Form -->
+     <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8 shadow rounded p-4">
+        <h3 class="text-center my-2">Create Account</h3>
+
+        <form class="form" name="form" onsubmit="return validateForm()" action="login.html">
+          <div class="form-floating">
+            <input type="text" id="name" name="name" class="form-control" placeholder="name">
+            <label for="name">Name</label>
+            <span id="name-error" class="my-3 text-danger"></span>
+          </div>
+
+        <!-- gender -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="my-3">
+              <label for="gender" id="gender"> Gender: </label>
+              <input
+                type="radio"
+                name="gender"
+                class="form-control-input ms-3"
+                value="male"
+              />
+              Male
+              <input
+                type="radio"
+                name="gender"
+                class="form-control-input ms-3"
+                value="Female"
+              />
+              Female
+            </div>
+            <span id="gender-err" class="my-3 text-danger"></span>
+          </div>
+        </div>
+
+        <!-- DOB -->
+        <div class="mb-4">
+          <label for="DOB" class="form-label">Date of Birth :</label>
+          <input type="date" id="date" class="form-control-input ms-2" />
+          <span id="date-err" class="my-3 text-danger"></span>
+
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label for="email" class="form-label">Email: </label>
+          <input type="text" class="form-control" id="email"/>
+           <span id="email-error" class="my-3 text-danger"></span>
+
+        </div>
+
+        <!-- Password -->
+          <div class="mb-4">
+          <label for="pass" class="form-label">Password </label>
+          <input type="password" class="form-control" id="password" name="password"/>
+        </div>
+
+
+        <!-- Mobile -->
+        <div class="mb-4">
+          <label for="mobile" class="form-label">Mobile: </label>
+          <input type="text" class="form-control" id="mobile" />
+          <span id="mob-err" class="my-2 text-danger"></span>
+        </div>
+
+        <!-- Address -->
+        <div class="mb-4">
+          <div class="fs-4"><strong>Address</strong></div>
+          <textarea name="address" id="address" class="w-100"></textarea>
+          <span id="add-err" class="my-3 text-danger"></span>
+          <div class="row">
+            <div class="col">
+              <div class="mx-1 mt-3">
+                Select Coutry
+                <select class="form-select mt-2">
+                  <option value="1">China</option>
+                  <option value="2">Italy</option>
+                  <option value="3">India</option>
+                  <option value="4">China</option>
+                  <option value="5">Russia</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <div class="mx-1 mt-3">
+                Select State
+                <select class="form-select mt-2">
+                  <option value="1">Maharashtra</option>
+                  <option value="2">Gujarat</option>
+                  <option value="3">Rajashthan</option>
+                  <option value="4">Goa</option>
+                  <option value="5">Punjab</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="mx-1 mt-3">
+                Select City
+                <select class="form-select mt-2">
+                  <option value="1">Rajkot</option>
+                  <option value="2">Vadodara</option>
+                  <option value="3">Surat</option>
+                  <option value="4">Jamnagar</option>
+                  <option value="5">Junagadh</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+
+            <label for="Zipcode" class="form-label my-3">Zip Code </label>
+            <input type="text" class="form-control w-25" id="zip" />
+            <span id="zip-err" class="my-3 text-danger"></span>
+
+
+
+<center>        <button type="submit" class="btn btn-dark " onclick="register()" id="submit">Submit</button>
+</center>      </div>
+    </div>
+        </form>
+      </div>
+      <div class="col-2"></div>
+     </div>
+
+
+     <script>
+      function register() {
+        const pass = document.getElementById("password").value
+        const email = document.getElementById("email").value
+
+
+       let em =  localStorage.setItem("email",email)
+        localStorage.setItem("password", pass)
+      }
+
+
+
+      function validateForm() {
+        let name = document.form.name.value
+        let nameerr = document.getElementById("name-error")
+        nameerr.innerText=""
+        if (name=="") {
+          nameerr.innerText="Please eneter your name"
+          return false
+        }
+
+        let em_er = document.getElementById("email-error")
+        em_er.innerText=""
+        if(email=== "" ){
+          em_er.innerText="Email must symbol"
+          return false
+        }
+
+        let mobile = document.getElementById("mobile").value
+        let mbr = document.getElementById("mob-err")
+        mbr.innerText=""
+        if (mobile.length <= 9 || !mobile== Number) {
+          mbr.innerText="Mobile number must be 10 digits or digit must be number"
+         return false
+        }
+
+        let gender = document.getElementById("gender").value
+        let gener = document.getElementById("gender-err")
+        gener.innerText=""
+        if (!gender.checked) {
+          gener.innerText="Please selece gender"
+          return false
+
+        }
+
+        let add = document.getElementById("address").value
+        let adder = document.getElementById("add-err")
+        adder.innerText=""
+
+        if (add =="") {
+          adder.innerText="Please enter address"
+          return false
+
+        }
+
+        let zip = document.getElementById("zip").value
+        let ziper = document.getElementById("zip-err")
+        ziper.innerText=""
+        if (zip=="") {
+          ziper.innerText="Please enter zip code"
+          return false
+        }
+
+        let date = document.getElementById("date").value
+        let dater = document.getElementById("date-err")
+        dater.innerText=""
+        if (date==" ") {
+          dater.innerText="Please select Date"
+          return false
+
+        }
+
+
+
+      }
+
+
+
+
+     </script>
+</body>
+</html>

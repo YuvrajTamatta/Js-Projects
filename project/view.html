@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/MyShops_Logo.jpg" />
+    <title>view</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+
+    <nav
+      class="d-flex justify-content-between shadow position-sticky top-0 bg-light"
+    >
+      <div class="logo">
+ <a href="API-PROJECT.html"><img src="images/logo.png" alt="Not found" height="90px" /></a>      </div>
+      <div class="d-flex justify-content-between fs-6 align-items-center">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search items...."
+          class="rounded p-1 border border-2"
+        />
+         <p class="mx-4">
+
+          <i class="me-3 fa-solid fa-cart-shopping position-relative"><a href="product.html" class="link-underline-light text-reset"><span class="ms-1 ">Product</span></a>
+           <span class="position-absolute rounded-pill bg-success" id="counter">
+
+    <span class="visually-hidden">unread messages</span>
+  </i>
+        </p>
+        <p class="mx-4"><i class="me-2 fa-solid fa-heart"></i><a href="checkout.html" class="text-decoration-none text-reset"
+            >Check-Out</a
+          ></p>
+        <p class="mx-4">
+          <i class="me-2 fa-solid fa-right-from-bracket"></i
+          ><a href="create.html" class="text-decoration-none text-reset"
+            >Log-out</a
+          >
+        </p>
+        <p class="mx-4"><i class="me-2 fa-solid fa-user"></i>Profile</p>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="row">
+      <!-- right-side -->
+      <div class="col-12  " style="height: 550px; width:100%;" >
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h4 class="my-3 ms-2"></h4>
+          </div>
+        </div>
+        <div id="cards-container" class="h-60"></div>
+      </div>
+      <!-- col-8 ended here -->
+    </div>
+    <!-- row Ended here. -->
+
+    <script>
+
+
+
+      let allData = [];
+      const container = document.getElementById("cards-container");
+
+      function fetchData() {
+        return fetch("https://fakestoreapiserver.reactbd.com/walmart")
+          .then((response) => response.json())
+          .then((data) => {
+            allData = data;
+            renderResults(data);
+          });
+      }
+
+      function renderResults(data) {
+        container.innerHTML = "";
+        data.forEach((item) => {
+          url = window.location.href;
+          cmpurl = "http://127.0.0.1:5501/view.html?" + item._id;
+          if (url == cmpurl) {
+
+
+
+        let div = document.createElement("div")
+        div.setAttribute("class","shadow mx-5 ")
+
+        let row = document.createElement("row")
+        row.setAttribute("class", "row ")
+
+        let col1 = document.createElement("col")
+        col1.setAttribute("class", "col-4")
+        let img = document.createElement("img")
+        img.setAttribute("src",item.image)
+        img.style.height="100%"
+        img.style.width="100%"
+        col1.append(img)
+        row.append(col1)
+
+        let col2 = document.createElement("col")
+        col2.setAttribute("class", "col-8 d-flex flex-column gap-3 p-3")
+
+        let title = document.createElement("h3")
+        title.innerText = item.title
+        title.setAttribute("class", " mt-5 fs-1")
+        col2.append(title)
+        row.append(col2)
+
+        let des = document.createElement("h5")
+        des.setAttribute("class", "")
+        des.innerText=item.des
+        col2.append(des)
+
+        let brand = document.createElement("p")
+        brand.setAttribute("class", "fs-3")
+        brand.innerText=item.brand
+        col2.append(brand)
+
+        let cat = document.createElement("span")
+        cat.setAttribute("class", "fs-4")
+        cat.innerText=item.category
+        col2.append(cat)
+
+        let price = document.createElement("h5")
+        price.setAttribute("class", "fw-bold fs-3")
+        price.innerText= "₹ "+item.price
+        col2.append(price)
+
+        let cart = document.createElement("button")
+        cart.innerHTML="ADD CART"
+        cart.setAttribute("class", " btn btn-outline-dark rounded-4 m-4 p-2   ")
+        cart.addEventListener("click",()=>{
+          localStorage.setItem("card-"+item._id, item._id)
+          window.location.replace("http://127.0.0.1:5501/API-PROJECT.html")
+
+        })
+        col2.append(cart)
+
+
+
+        div.append(row)
+        container.append(div)
+
+
+       let counter=document.getElementById("counter")
+        if (localStorage.length==0) {
+          counter.classList.remove("badge")
+
+        }else{
+          counter.classList.add("badge")
+          counter.innerText=localStorage.length
+        }
+
+
+
+          }
+        });
+      }
+
+
+
+
+      // Filtering data on Search
+      function handleSearch() {
+        const searchInput = document
+          .getElementById("search")
+          .value.toLowerCase();
+        const filteredData = allData.filter((item) =>
+          item.title.toLowerCase().includes(searchInput)
+        );
+        renderResults(filteredData);
+      }
+
+      document.getElementById("search").addEventListener("input", handleSearch);
+      fetchData();
+
+
+
+
+      // Filtering data on select
+
+      // Filtering by PRICE
+      let cartbt = document.querySelector("#addcart")
+            console.log(cartbt);
+    </script>
+  </body>
+</html>

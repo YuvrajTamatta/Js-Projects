@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin-light</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .fa-solid{
+        color: rgb(233, 227, 227);
+      }
+        .fa-brands{
+        color: rgb(233, 227, 227);
+      }
+      .fa-solid{
+        color: rgb(233, 227, 227);
+      }
+        .fa-regular{
+        color: rgb(233, 227, 227);
+      }
+      .col-2{
+        height: 100vh;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Left Side -->
+        <div class="col-2 overflow-y-auto bg bg-dark d-flex flex-direction-column text-light">
+          <div class="p-2">
+            <!-- Logo -->
+            <div class="logo d-flex mt-3 position-sticky top-0 bg bg-dark">
+              <img
+                src="images/AdminLTELogo.webp"
+                alt="img not found"
+                height="40px"
+              />
+              <p class="ms-3 mt-2">AdminLTE 3</p>
+            </div>
+            <hr />
+            <!-- profile -->
+            <div class="profile d-flex">
+              <img
+                src="images/profile.jpg"
+                alt=""
+                height="40px"
+                class="rounded-5"
+              />
+              <div class="ms-3 mt-2">Alexander Pierce</div>
+            </div>
+            <hr />
+            <!-- Search-Bar -->
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search" />
+              <button class="btn border" type="button" id="button-addon2">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+
+            <!-- Tools -->
+            <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-solid fa-gauge mt-2 fs-5 "></i>
+              </div>
+              <div class="col-11">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="" selected>Dashboard</option>
+                  <option value="">Dashboard v1</option>
+                  <option value="">Dashboard v2</option>
+                  <option value="">Dashboard v3</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-brands fa-staylinked mt-2 fs-5 "></i>
+              </div>
+              <div class="col-11">
+                <span class="ms-3 hover">Widgets</span>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-regular fa-file mt-2 fs-5 "></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Top Navigation</option>
+                  <option value="">Top Navigation+Sidebar</option>
+                  <option value="">Boxed</option>
+                  <option value="">Fixed Sidebar</option>
+                  <option value="">Fixed Sidebr+custom</option>
+                  <option value="">fixed Navbar</option>
+                  <option value="">fixed Footer</option>
+                  <option value="">Collapsed Sidebar</option>
+                </select>
+              </div>
+            </div>
+
+             <div class="row mb-2">
+              <div class="col-1">
+               <i class="fa-solid fa-chart-pie mt-2 fs-5 "></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Pie Charts</option>
+                  <option value="">PartJS</option>
+                  <option value="">Float</option>
+                  <option value="">Inline</option>
+                  <option value=""> uPloat </option>
+
+                </select>
+              </div>
+            </div>
+
+             <div class="row mb-2">
+              <div class="col-1">
+              <i class="fa-solid fa-tree mt-2 fs-5 "></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Ui Element</option>
+                  <option value="">General</option>
+                  <option value="">icon</option>
+                  <option value="">Buttons</option>
+                  <option value=""> Sliders </option>
+                  <option value="">Models and alerts</option>
+                  <option value="">Navbar and Tabs</option>
+                  <option value="">Timeline</option>
+                  <option value=""> Ribbons</option>
+
+                </select>
+              </div>
+            </div>
+
+             <div class="row mb-2">
+              <div class="col-1">
+            <i class="fa-regular fa-rectangle-list mt-2 fs-5 "></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Form</option>
+                  <option value="">General Elements</option>
+                  <option value="">editors</option>
+                  <option value="">Validation</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-1">
+            <i class="fa-solid fa-table-list mt-2 fs-5 "></i></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Tables</option>
+                  <option value=""> Simple Table</option>
+                  <option value="">Database Table</option>
+                  <option value="">Js Grid</option>
+                </select>
+              </div>
+            </div>
+            <!-- Example -->
+             <span class="">EXAMPLES</span>
+
+              <div class="row mt-2">
+              <div class="col-1">
+                <i class="fa-solid fa-calendar-days mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 mb-2">Calendar</span>
+              </div>
+            </div>
+
+             <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-solid fa-image mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex">
+              <span class="mt-2 ms-2">Gallery</span>
+              </div>
+            </div>
+
+             <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-regular fa-clipboard mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Kanbard Board</span>
+              </div>
+            </div>
+
+              <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-solid fa-envelope-open-text mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">MailBox</option>
+                  <option value="">General Elements</option>
+                  <option value="">editors</option>
+                  <option value="">Validation</option>
+                </select>
+              </div>
+            </div>
+
+             <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-solid fa-file-arrow-up mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Pages</option>
+                  <option value="">Invoice</option>
+                  <option value="">Profile</option>
+                  <option value="">E-commerce</option>
+                  <option value=""> Projects </option>
+                  <option value="">Project adds</option>
+                  <option value="">Project Edit</option>
+                  <option value="">Project Detail</option>
+                  <option value=""> Contact</option>
+                  <option value=""> Contact</option>
+                  <option value=""> FAQ</option>
+                </select>
+              </div>
+            </div>
+
+             <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-solid fa-dungeon mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Extras</option>
+                  <option value="">Login and register v1</option>
+                  <option value="">Login and register v2</option>
+                  <option value="">Lockscreen</option>
+                  <option value="">Legacy User Menu</option>
+                  <option value="">Language Menu</option>
+                  <option value="">Error 404</option>
+                  <option value="">Error 500</option>
+                  <option value="">Pace</option>
+                  <option value="">Blank Page</option>
+                  <option value="">Starter Page</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-1">
+                <i class="fa-brands fa-searchengin mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+                <select class="form-select bg bg-dark border border-0 text-light">
+                  <option value="">Search</option>
+                  <option value="">Simple Search</option>
+                  <option value="">Enhance</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Miscellaneous -->
+             <span>MISCELLANEOUS</span>
+
+              <div class="row mb-2 mt-2">
+              <div class="col-1">
+                <i class="fa-brands fa-instalod mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Tabbed IFrame Plugin</span>
+              </div>
+            </div>
+
+              <div class="row mb-4">
+              <div class="col-1">
+                <i class="fa-solid fa-file-excel mt-2 fs-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Documentation</span>
+              </div>
+            </div>
+
+            <!-- Multilevel Example -->
+             <span>MULTILEVEL EXAMPLE</span>
+
+              <div class="row mb-2 mt-2">
+              <div class="col-1">
+                <i class="fa-regular fa-circle mt-2"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Level 1</span>
+              </div>
+            </div>
+
+              <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-regular fa-circle  mt-2"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Level 2</span>
+              </div>
+            </div>
+
+              <div class="row mb-4">
+              <div class="col-1">
+                <i class="fa-regular fa-circle  mt-2"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Level 3</span>
+              </div>
+            </div>
+
+            <!-- Labels -->
+             <span>LABELS</span>
+
+               <div class="row mb-2 mt-2">
+              <div class="col-1">
+                <i class="fa-regular fa-circle mt-2 border border-primary rounded-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Important</span>
+              </div>
+            </div>
+
+              <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-regular fa-circle mt-2  border border-danger rounded-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Warning</span>
+              </div>
+            </div>
+
+              <div class="row mb-2">
+              <div class="col-1">
+                <i class="fa-regular fa-circle mt-2 border border-info rounded-5"></i>
+              </div>
+              <div class="col-11 d-flex ">
+              <span class="mt-2 ms-2">Information</span>
+              </div>
+            </div>
+
+
+
+
+
+
+            </div>
+          </div>
+
+        <!-- Right Side -->
+        <div class="col-10 ">Everyone</div>
+
+    </div>
+
+
+  </body>
+</html>

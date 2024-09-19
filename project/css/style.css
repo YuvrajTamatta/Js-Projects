@@ -1,0 +1,20 @@
+.container-md{
+  background: #c1c1b3;
+  border: 2px solid;
+  padding: 2px;
+
+}
+.row{
+  border: 2px solid green;
+  padding: 2px;
+
+}
+
+.col{
+   background-color: yellow;
+  font-size: 20px;
+  border: 2px solid red;
+  
+
+
+}

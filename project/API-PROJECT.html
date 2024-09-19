@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/MyShops_Logo.jpg" />
+    <title>MyShops</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="d-flex justify-content-between shadow position-sticky top-0 bg-light">
+      <div class="logo">
+        <a href="API-PROJECT.html"><img src="images/logo.png" alt="Not found" height="90px" /></a>
+      </div>
+      <div class="d-flex justify-content-between fs-6 align-items-center">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search items...."
+          class="rounded p-1 border border-2"
+        />
+        <p class="mx-4">
+
+          <i class="me-3 fa-solid fa-cart-shopping position-relative"><a href="product.html" class="link-underline-light text-reset"><span class="ms-1 ">Product</span></a>
+           <span class="position-absolute  rounded-pill bg-success" id="counter">
+
+    <span class="visually-hidden">unread messages</span>
+  </i>
+        </p>
+        <p class="mx-3"><i class="me-2 fa-solid fa-server"></i>Service</p>
+        <p class="mx-2">
+          <i class="me-2 fa-solid fa-right-from-bracket"></i
+          ><a href="create.html" class="text-decoration-none text-reset"
+            >Log-out</a
+          >
+        </p>
+        <p class="mx-4"><i class="me-2 fa-solid fa-user"></i>Profile</p>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="row">
+      <div class="col-2 ps-3 overflow-y-scroll" style="height: 100vh">
+        <h3 class="ms-3 mt-3">Profile</h3>
+        <div class="profile d-flex my-3 ms-2 shadow rounded p-2">
+          <div class="logo">
+            <img
+              src="images/profile.avif"
+              alt=""
+              height="60px"
+              class="rounded-circle"
+            />
+          </div>
+          <div class="ms-3">
+            <span class="p-0">hello</span><br />
+            <span class="m-0">John Amberane</span>
+          </div>
+        </div>
+        <!-- My ORDERS -->
+        <div class="myorders d-flex justify-content-between ms-2 my-3">
+          <span>My Orders</span>
+          <span> > </span>
+        </div>
+
+        <!-- ACCOUNT SETTING -->
+        <div>
+          <p><i class="mx-2 fa-solid fa-user"></i>Account Setting</p>
+          <ul>
+            <li class="btn btn-outline-primary">Profile Information</li>
+            <li>Manage Address</li>
+            <li>Notification Preference</li>
+          </ul>
+        </div>
+
+        <!-- Payments -->
+
+        <div>
+          <p><i class="mx-2 fa-solid fa-wallet"></i>Payments</p>
+          <ul class="list-unstyled ms-4">
+            <li>PhonePe Wallet</li>
+            <li>Gift Cards</li>
+            <li>Pay Later</li>
+            <li>Saved Cards</li>
+          </ul>
+        </div>
+
+        <!-- My Stuffs -->
+        <div>
+          <p><i class="mx-2 fa-solid fa-toolbox"></i>My Stuffs</p>
+          <ul class="list-unstyled ms-4">
+            <li>My Rewards</li>
+            <li>My Review and Ratings</li>
+            <li>All Notification</li>
+            <li>My Wishlist</li>
+            <li>Flipkart First Subscription</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- right-side -->
+      <div class="col-10 shadow overflow-auto" style="height: 100vh">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h4 class="my-3 ms-2">All Products</h4>
+          </div>
+          <div>
+             <select id="price" class="btn btn-outline-dark mx-3 px-3 py-2">
+              <option value="" selected>Filter by Price</option>
+              <option value= "50" >below-50</option>
+              <option value="250">below-250</option>
+              <option value="500">below-500</option>
+              <option value="1000">below-1000</option>
+              <option value="1000">above-1000</option>
+            </select>
+
+            <select id="category" class="btn btn-outline-dark mx-3 px-3 py-2">
+              <option value="" selected>Select Category</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Equipments">Equipments</option>
+              <option value="Home Decoration">Home Decoration</option>
+              <option value="Beauty Product">Beauty Product</option>
+            </select>
+          </div>
+        </div>
+        <div id="cards-container" class="h-60"></div>
+      </div>
+      <!-- col-8 ended here -->
+    </div>
+    <!-- row Ended here. -->
+
+    <script>
+      let allData = [];
+      const container = document.getElementById("cards-container");
+
+
+      function fetchData() {
+        return fetch("https://fakestoreapiserver.reactbd.com/walmart")
+          .then((response) => response.json())
+          .then((data) => {
+            allData = data;
+            renderResults(data);
+          });
+      }
+
+      function renderResults(data) {
+        container.innerHTML = "";
+        data.forEach((item) => {
+
+          const card = document.createElement("div");
+          card.className = "ps-3 mb-3 d-flex rounded w-100 shadow border";
+          card.innerHTML = `<div>
+        <img src="${item.image}" height="160px" width="160px"></div>
+        <div><h5 class="m-3">${item.title}</h5>
+        <p class="m-3">${item.des}</p>
+         <p class="m-3">${item.category}</p>
+        <h6 class="m-3">Price: ${item.price}</h6>
+        </div>`;
+        let btn = document.createElement("a")
+        btn.setAttribute("class","btn btn-dark text-light p-1 my-2")
+        btn.setAttribute("href","view.html"+"?"+item._id)
+        btn.innerHTML="show more"
+        container.appendChild(btn)
+        container.appendChild(card);
+
+        // Counter on badge
+       let counter=document.getElementById("counter")
+           if (localStorage.length==0) {
+        counter.classList.remove("badge")
+       }
+       else{
+        counter.classList.add("badge")
+       counter.innerHTML=localStorage.length
+       }
+
+
+        });
+      }
+
+
+      // Filtering data on Search
+      function handleSearch() {
+        const searchInput = document
+          .getElementById("search")
+          .value.toLowerCase();
+        const filteredData = allData.filter((item) =>
+          item.title.toLowerCase().includes(searchInput)
+        );
+        renderResults(filteredData);
+      }
+
+      document.getElementById("search").addEventListener("input", handleSearch);
+      fetchData();
+
+      // Filtering data on select
+      function Category(category){
+        const select = allData.filter((item)=>
+         item.category===category || category===""
+        )
+        renderResults(select)
+      }
+
+
+      document.getElementById("category").addEventListener("change",(e)=>{
+         Category(e.target.value)
+       })
+
+       // Filtering by PRICE
+       function Prices(category){
+        const select = allData.filter((item)=>
+         item.price < parseInt(category)
+        )
+         console.log(category)
+        renderResults(select)
+      }
+      document.getElementById("price").addEventListener("change",(e)=>{
+         Prices(e.target.value)
+       })
+
+
+    </script>
+  </body>
+</html>

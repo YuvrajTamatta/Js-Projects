@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/MyShops_Logo.jpg" />
+    <title>All Products</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="d-flex justify-content-between shadow position-sticky top-0 bg-light"
+    >
+      <div class="logo">
+ <a href="API-PROJECT.html"><img src="images/logo.png" alt="Not found" height="90px" /></a>      </div>
+      <div class="d-flex justify-content-between fs-6 align-items-center">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search items...."
+          class="rounded p-1 border border-2"
+        />
+         <p class="mx-4">
+
+          <i class="me-3 fa-solid fa-cart-shopping position-relative"><a href="product.html" class="link-underline-light text-reset"><span class="ms-1 ">Product</span></a>
+           <span class="position-absolute  rounded-pill bg-success" id="counter">
+
+  </i>
+        </p>
+        <p class="mx-4"><i class="me-2 fa-solid fa-heart"></i>Wishlist</p>
+        <p class="mx-4">
+          <i class="me-2 fa-solid fa-right-from-bracket"></i
+          ><a href="create.html" class="text-decoration-none text-reset"
+            >Log-out</a
+          >
+        </p>
+        <p class="mx-4"><i class="me-2 fa-solid fa-user"></i>Profile</p>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="row">
+      <!-- right-side -->
+      <div class="col-12  " style="height: 550px; width:100%;" >
+        <div class="d-flex justify-content-between align-items-center">
+                  <img src="images/back.png" alt="" id="back">
+
+          <div class="shadow w-25 m-3  rounded-pill p-2 text-center border border-3">
+            <h4 class="my-3 ms-2"><span>Total Items: <span id="item"></span></span></h4>
+            <h4 class="my-3 ms-2"><span>Total Price: ₹ <span id="totalprice"></span></span></h4>
+            <h4><button class="btn btn-outline-info px-3 fs-5 rounded-4 text-dark">Place Order</button></h4>
+
+
+          </div>
+                <button class="btn btn-outline-dark  fs-4 rounded-4 border-3 shadow" style="width: 200px; margin-right: 200px;"> <a href="API-PROJECT.html" class="text-decoration-none text-reset"><i class="fa-solid fa-plus me-3"></i><span class="ms-1 ">Add More</span></a></button>
+
+        </div>
+           <div id="cards-container" class="h-60 p-4 mt-4 justify-content-start d-flex  flex-wrap gap-5"></div>
+
+      </div>
+      <!-- col-8 ended here -->
+    </div>
+    <!-- row Ended here. -->
+
+    <script>
+
+
+      let allData = [];
+      const container = document.getElementById("cards-container");
+
+      function fetchData() {
+        return fetch("https://fakestoreapiserver.reactbd.com/walmart")
+          .then((response) => response.json())
+          .then((data) => {
+            allData = data;
+            renderResults(data);
+          });
+      }
+
+      function renderResults(data) {
+
+        container.innerHTML = "";
+        let arr=[]
+        let total=0
+
+
+
+        data.forEach((item) => {
+
+            document.getElementById("back").addEventListener("click",()=>{
+              localStorage.removeItem("card-"+item._id)
+              history.back()
+       })
+
+
+
+
+
+         storageitem = localStorage.getItem("card-"+item._id)
+
+          if (storageitem) {
+             arr.push(Math.round(Number(item.price)))
+
+           if (arr.length == localStorage.length) {
+             for(v of arr){
+            total += v
+          }
+          document.getElementById('totalprice').innerText=total
+
+           }
+
+            const card = document.createElement("div");
+            card.className = " cards shadow rounded-4 shadow-5 ";
+            card.style.height="250px"
+            card.style.width="425px"
+            let splitname = item.title.split(" ", 2)
+            let prices = Math.round(item.price)
+
+            card.innerHTML = ` <div>
+
+     <div class="row">
+      <div class="col-6">
+        <img src="${item.image}" height="180px" width="180px" class="rounded-4">
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-12 p-3">
+            <h6 class="p-0 my-2 fs-4">${splitname}</h6>
+            <p class="p-0 fs-5"> ₹ ${prices}</p>
+            <p class="p-0 fs-5">${item.category}</p>
+          </div>
+          <div class="col-12 position-relative  id=addbuy">
+
+    </div>
+          </div>
+        </div>
+      </div>
+     </div>
+     </div>`;
+
+
+     let dv = document.createElement("div")
+     dv.setAttribute("class", " d-flex justify-content-end")
+
+     let buy = document.createElement("button")
+     buy.setAttribute("class","btn btn-outline-primary me-3")
+     buy.innerText="Buy"
+     buy.addEventListener('click',()=>{
+      localStorage.setItem("card-"+item._id)
+      window.location.reload()
+     })
+     dv.append(buy)
+
+     let removebtn = document.createElement("button")
+     removebtn.innerText="Remove"
+     removebtn.setAttribute("class", "btn btn-outline-danger me-3")
+     removebtn.addEventListener('click',()=>{
+      alert("Do you want to remove item from cart")
+      localStorage.removeItem("card-"+item._id)
+      window.location.reload()
+     })
+
+
+
+     dv.append(removebtn)
+     card.append(dv)
+    container.appendChild(card);
+
+
+
+      // Counter on badge and total item
+       let counter=document.getElementById("counter")
+
+       if (localStorage.length==0) {
+        counter.classList.remove("badge")
+       }
+       else{
+        counter.classList.add("badge")
+       counter.innerHTML=localStorage.length
+       }
+
+
+
+
+
+
+
+
+
+          }
+        });
+         let addbtn = document.createElement("button")
+     addbtn.innerHTML="Add items"
+     addbtn.setAttribute("class","btn shadow shadow-5 btn-outline-info rounded-circle fs-3 m-4")
+    container.appendChild(addbtn)
+     addbtn.style.height="190px"
+    addbtn.style.width="190px"
+    addbtn.addEventListener("click",()=>{
+      window.location.replace("http://127.0.0.1:5501/API-PROJECT.html")
+    })
+
+      }
+
+
+
+
+
+
+
+
+      // Filtering data on Search
+      function handleSearch() {
+        const searchInput = document
+          .getElementById("search")
+          .value.toLowerCase();
+        const filteredData = allData.filter((item) =>
+          item.title.toLowerCase().includes(searchInput)
+        );
+        renderResults(filteredData);
+      }
+
+      document.getElementById("search").addEventListener("input", handleSearch);
+      fetchData();
+
+
+    </script>
+  </body>
+</html>
